@@ -1,8 +1,6 @@
-/*
- * 
- * This is the dialog for Employee search by ID
- * 
- * */
+
+ //This is the dialog for Employee search by ID
+
 
 import java.awt.Color;
 import java.awt.Container;
@@ -22,14 +20,14 @@ import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 
 public class SearchByIdDialog extends JDialog implements ActionListener {
-	EmployeeDetails parent;
+	EmployeeDetails eDetails; //Renamed variable from parent to eDetails
 	JButton search, cancel;
 	JTextField searchField;
 	// constructor for SearchByIdDialog 
-	public SearchByIdDialog(EmployeeDetails parent) {
+	public SearchByIdDialog(EmployeeDetails eDetails) {
 		setTitle("Search by Surname");
 		setModal(true);
-		this.parent = parent;
+		this.eDetails = eDetails;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 		JScrollPane scrollPane = new JScrollPane(searchPane());
@@ -40,7 +38,7 @@ public class SearchByIdDialog extends JDialog implements ActionListener {
 		setSize(500, 190);
 		setLocation(350, 250);
 		setVisible(true);
-	}// end SearchByIdDialog
+	}
 	
 	// initialize search container
 	public Container searchPane() {
@@ -53,9 +51,9 @@ public class SearchByIdDialog extends JDialog implements ActionListener {
 
 		textPanel.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
 		textPanel.add(searchLabel = new JLabel("Enter ID:"));
-		searchLabel.setFont(this.parent.font1);
+		searchLabel.setFont(this.eDetails.font1);
 		textPanel.add(searchField = new JTextField(20));
-		searchField.setFont(this.parent.font1);
+		searchField.setFont(this.eDetails.font1);
 		searchField.setDocument(new JTextFieldLimit(20));
 		
 		buttonPanel.add(search = new JButton("Search"));
@@ -69,28 +67,28 @@ public class SearchByIdDialog extends JDialog implements ActionListener {
 		searchPanel.add(buttonPanel);
 
 		return searchPanel;
-	}// end searchPane
+	}
 
 	// action listener for save and cancel button
 	public void actionPerformed(ActionEvent e) {
-		// if option search, search for Employee
+		
 		if (e.getSource() == search) {
-			// try get correct valus from text field
+			
 			try {
 				Double.parseDouble(searchField.getText());
-				this.parent.searchByIdField.setText(searchField.getText());
-				// search Employee by ID
-				this.parent.searchEmployeeById();
-				dispose();// dispose dialog
-			}// end try
+				this.eDetails.searchByIdField.setText(searchField.getText());
+				
+				this.eDetails.searchEmployeeById();
+				dispose();
+			}
 			catch (NumberFormatException num) {
-				// display message and set colour to text field if entry is wrong
+				
 				searchField.setBackground(new Color(255, 150, 150));
 				JOptionPane.showMessageDialog(null, "Wrong ID format!");
-			}// end catch
-		}// end if
-		// else dispose dialog
+			}
+		}
+		
 		else if (e.getSource() == cancel)
 			dispose();
-	}// end actionPerformed
-}// end class searchByIdDialog
+	}
+}
