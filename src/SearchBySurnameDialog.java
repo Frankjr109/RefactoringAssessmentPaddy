@@ -1,8 +1,8 @@
-/*
- * 
- * This is a dialog for searching Employees by their surname.
- * 
- * */
+
+ 
+//This is a dialog for searching Employees by their surname.
+
+ 
 
 import java.awt.Container;
 import java.awt.GridLayout;
@@ -20,14 +20,14 @@ import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 
 public class SearchBySurnameDialog extends JDialog implements ActionListener{
-	EmployeeDetails parent;
+	EmployeeDetails eDetails;
 	JButton search, cancel;
 	JTextField searchField;
 	// constructor for search by surname dialog
-	public SearchBySurnameDialog(EmployeeDetails parent) {
+	public SearchBySurnameDialog(EmployeeDetails eDetails) {
 		setTitle("Search by Surname");
 		setModal(true);
-		this.parent = parent;
+		this.eDetails = eDetails;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 		JScrollPane scrollPane = new JScrollPane(searchPane());
@@ -38,7 +38,7 @@ public class SearchBySurnameDialog extends JDialog implements ActionListener{
 		setSize(500, 190);
 		setLocation(350, 250);
 		setVisible(true);
-	}// end SearchBySurnameDialog
+	}
 	
 	// initialize search container
 	public Container searchPane() {
@@ -51,9 +51,9 @@ public class SearchBySurnameDialog extends JDialog implements ActionListener{
 	
 		textPanel.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
 		textPanel.add(searchLabel = new JLabel("Enter Surname:"));
-		searchLabel.setFont(this.parent.font1);
+		searchLabel.setFont(this.eDetails.font1);
 		textPanel.add(searchField = new JTextField(20));
-		searchField.setFont(this.parent.font1);
+		searchField.setFont(this.eDetails.font1);
 		searchField.setDocument(new JTextFieldLimit(20));
 
 		buttonPanel.add(search = new JButton("Search"));
@@ -67,19 +67,19 @@ public class SearchBySurnameDialog extends JDialog implements ActionListener{
 		searchPanel.add(buttonPanel);
 
 		return searchPanel;
-	}// end searchPane
+	}
 
-	// action listener for save and cancel button
+	
 	public void actionPerformed(ActionEvent e) {
-		// if option search, search for Employee
+		
 		if(e.getSource() == search){
-			this.parent.searchBySurnameField.setText(searchField.getText());
+			this.eDetails.searchBySurnameField.setText(searchField.getText());
 			// search Employee by surname
-			this.parent.searchEmployeeBySurname();
-			dispose();// dispose dialog
-		}// end if
-		// else dispose dialog
+			this.eDetails.searchEmployeeBySurname();
+			dispose();
+		}
+		
 		else if(e.getSource() == cancel)
-			dispose();// dispose dialog
-	}// end actionPerformed
-}// end class SearchBySurnameDialog
+			dispose();
+	}
+}
