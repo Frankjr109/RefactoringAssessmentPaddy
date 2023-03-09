@@ -27,7 +27,7 @@ public class Employee extends Person{
 		this.department = "";
 		this.salary = 0;
 		this.fullTime = false;
-	}//end Employee with no details
+	}
 
 	//Initializing constructor
 	public Employee(int employeeId, String pps, String surname, String firstName, char gender, String department, double salary,
@@ -40,7 +40,7 @@ public class Employee extends Person{
 		this.department = department;
 		this.salary = salary;
 		this.fullTime = fullTime;
-	}// end Employee with details
+	}
 	
 	public Employee(Person aPerson, int employeeId, String department, double salary, boolean fullTime) {
 		this.aPerson = aPerson;
@@ -127,5 +127,5 @@ public class Employee extends Person{
 		return "Employee ID: " + this.employeeId + "\nPPS Number: " + this.pps + "\nSurname: " + this.surname
 				+ "\nFirst Name: " + this.firstName + "\nGender: " + this.gender + "\nDepartment: " + this.department + "\nSalary: " + this.salary
 				+ "\nFull Time: " + bool;
-	}// end toString
-}// end class Employee
+	}
+}
