@@ -4,7 +4,7 @@
  * 
  * */
 
-public class Employee{
+public class Employee extends Person{
 	private int employeeId;
 	private String pps;
 	private String surname;
@@ -13,6 +13,9 @@ public class Employee{
 	private String department;
 	private double salary;
 	private boolean fullTime;
+	
+	//Create a person object because essentially, every Employee is a person
+	Person aPerson;
 
 	// Create Employee with no details
 	public Employee() {
@@ -26,7 +29,7 @@ public class Employee{
 		this.fullTime = false;
 	}//end Employee with no details
 
-	// Create Employee with details
+	//Initializing constructor
 	public Employee(int employeeId, String pps, String surname, String firstName, char gender, String department, double salary,
 			boolean fullTime) {
 		this.employeeId = employeeId;
@@ -38,6 +41,14 @@ public class Employee{
 		this.salary = salary;
 		this.fullTime = fullTime;
 	}// end Employee with details
+	
+	public Employee(Person aPerson, int employeeId, String department, double salary, boolean fullTime) {
+		this.aPerson = aPerson;
+		this.employeeId = employeeId;
+		this.department = department;
+		this.salary = salary;
+		this.fullTime = fullTime;
+	}
 
 	// Getter methods
 	public int getEmployeeId() {
